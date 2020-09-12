@@ -2,13 +2,11 @@
 import os
 from datetime import date
 #import pyarabic.number
-from num2words import num2words
 from docxtpl import DocxTemplate
-import pandas as pd
 
-from taskAssign.ketat import ketat_def
+from ketat import ketat_def
 
-from taskAssign.tashkel import tashkel_def
+from tashkel import tashkel_def
 
 
 def task_do(xlxfil,xlxForTsh,docfil,doctash):

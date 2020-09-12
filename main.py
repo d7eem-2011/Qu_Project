@@ -1,11 +1,8 @@
 from tkinter import *
-import os
-import xlsxwriter
-import tkinter.ttk  as ttk
 from tkinter import filedialog
 from tkinter import messagebox as mb
 from tkcalendar import DateEntry
-from taskAssign.module3 import task_do
+from module3 import task_do
 
 
 
@@ -16,12 +13,11 @@ from taskAssign.module3 import task_do
 
 qux = Tk()
 
-photo = PhotoImage(file="image/qu1.png")
+photo = PhotoImage(file=r"C:\Users\D7eem\PycharmProjects\Qu_Project\image\qu1.png")
 labelImg = Label(qux, width=377, height=140, image = photo, background= "lightblue", compound = TOP).pack(side= TOP)
 
 qux.title("-الصفحة الرئيسية-")
 qux.geometry("600x390")
-qux.iconbitmap("image/Qassim-University-01.ico")
 qux.resizable(False, False)
 qux.config( background= "lightblue")
 
@@ -59,27 +55,34 @@ def oneWindow():
 		global fileopen_tashkel
 		fileopen_tashkel = filedialog.askopenfilename(initialdir="/", title="Select A File",
 													  filetypes=(("xlsx", "*.xlsx"), ("all files", "*.*")))
-		labelFile = Label(boneWindow, text=fileopen_tashkel, background="white").pack(side=TOP)
+		labelFile = Label(boneWindow, text=fileopen_tashkel, background="white")
+		labelFile.pack(side=TOP)
 
 	def open_ketat():
 		global fileopen_ketat
 		fileopen_ketat = filedialog.askopenfilename(initialdir="/", title="Select A File",
 													filetypes=(("xlsx", "*.xlsx"), ("all files", "*.*")))
-		labelFile = Label(boneWindow, text=fileopen_ketat, background="white").pack(side=TOP)
+		labelFile = Label(boneWindow, text=fileopen_ketat, background="white")
+		labelFile.pack(side=TOP)
 
 
 	def task_run():
-		docfil = 'C:/Users/D7eem/Documents/Team_Project/word document/template v4.docx'
-		doctash = "C:/Users/D7eem/Documents/Team_Project/word document/تشكيل - مذكرات عرض للمجلس.docx"
+		docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
+		doctash = r"C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\تشكيل - مذكرات عرض للمجلس.docx"
+		try:
+			task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash)
+		except Exception:
+			mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
 
-		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash)
 
+	labelImg = Label(boneWindow, width=377, height=140, image = photo, background= "lightblue", compound = TOP)
+	labelImg.pack(side= TOP)
 
-	labelImg = Label(boneWindow, width=377, height=140, image = photo, background= "lightblue", compound = TOP).pack(side= TOP)
+	l1 = Label(boneWindow, text = "حدد رقم الجلسة", width=15, height=1, background="lightblue", compound=TOP)
+	l1.place(x=365, y=180)
 
-	l1 = Label(boneWindow, text = "حدد رقم الجلسة", width=15, height=1, background="lightblue", compound=TOP).place(x=365, y=180)
-
-	l2 = Label(boneWindow, text="ادخل تاريخ الجلسة", width=15, height=1, background="lightblue", compound=TOP).place(x=365, y=220)
+	l2 = Label(boneWindow, text="ادخل تاريخ الجلسة", width=15, height=1, background="lightblue", compound=TOP)
+	l2.place(x=365, y=220)
 
 	options = [ "1", "2", "3","4", "5", "6","7", "8", "9", "10",
 				"11", "12", "13","14", "15", "16","17", "18", "19", "20",
@@ -103,17 +106,23 @@ def oneWindow():
 					background='black', foreground='white', borderwidth=2)
 	cal.place(x=240, y=220)
 
-	b1 = Button(boneWindow, text="اختيار ملف التشكيل", width=15, height=1, command=open_tashkel, relief=FLAT).place(x=240, y=260)
+	b1 = Button(boneWindow, text="اختيار ملف التشكيل", width=15, height=1, command=open_tashkel, relief=FLAT)
+	b1.place(x=240, y=260)
 
-	b2 = Button(boneWindow, text="اختيار ملف الخطط", width=15, height=1, command=open_ketat).place(x=240, y=300)
+	b2 = Button(boneWindow, text="اختيار ملف الخطط", width=15, height=1, command=open_ketat)
+	b2.place(x=240, y=300)
 
-	l3 = Label(boneWindow, text=":ملاحظة قبل الحفظ* \n حدد رقم الجلسة - \n حدد تاريخ الجلسة - \n اختيار ملف التشكيل - \n اختيار ملف الخطط -", width=20, height=6, background="#FFFFFF").place(x=410, y=300)
+	l3 = Label(boneWindow, text=":ملاحظة قبل الحفظ* \n حدد رقم الجلسة - \n حدد تاريخ الجلسة - \n اختيار ملف التشكيل - \n اختيار ملف الخطط -", width=20, height=6, background="#FFFFFF")
+	l3.place(x=410, y=300)
 
-	b3 = Button (boneWindow, text = "حفظ", width=15, height=1, command=task_run).place(x=240, y=340)
+	b3 = Button (boneWindow, text = "حفظ", width=15, height=1, command=task_run)
+	b3.place(x=240, y=340)
 
-	b4 = Button(boneWindow, text="التحقق من الحفظ", width=15, height=1, command=open).place(x=240, y=380)
+	b4 = Button(boneWindow, text="التحقق من الحفظ", width=15, height=1, command=open)
+	b4.place(x=240, y=380)
 
-	buttonClose = Button (boneWindow, text = "اغلاق", width=10, height=1, command = call).place(x=255, y=420)
+	buttonClose = Button (boneWindow, text = "اغلاق", width=10, height=1, command = call)
+	buttonClose.place(x=255, y=420)
 
 b1 = Button(qux, text="تسجيل جلسة جديدة", width=15, height=1, command=oneWindow).place(x=305, y=180)
 
@@ -191,7 +200,8 @@ def threeWindow():
 					background='black', foreground='white', borderwidth=2)
 	cal.place(x=120, y=140)
 
-	l2 = Label(bthreeWindow,text = ":الاسم", width=15, height=1, background="lightblue", compound=TOP).place(x=410, y=180)
+	l2 = Label(bthreeWindow,text = ":الاسم", width=15, height=1, background="lightblue", compound=TOP)
+	l2.place(x=410, y=180)
 
 	t1 = Text(bthreeWindow, width=40, height=1).place(x=120, y=180)
 
@@ -227,7 +237,7 @@ def fourWindow():
 	bfourWindow.title("اعضاء الجلسة")
 	bfourWindow.geometry("600x480")
 	bfourWindow.resizable(False, False)
-	bfourWindow.config( background= "lightblue")
+	bfourWindow.config(background="lightblue")
 
 	labelImg = Label(bfourWindow, width=377, height=140, image = photo, background= "lightblue", compound = TOP).pack(side= TOP)
 
@@ -301,7 +311,7 @@ def fiveWindow():
 
 	b3 = Button(bfiveWindow, text="اختيار مسار ملف الاعضاء", width=20, height=1, command = open3).place(x=220,	y=340)
 
-	b4 = Button (bfiveWindow, text = "اغلاق", width=10, height=1, command = close).place(x=255, y=420)
+	b4 = Button(bfiveWindow, text = "اغلاق", width=10, height=1, command = close).place(x=255, y=420)
 
 button5 = Button(qux, text="اعداد البرنامج", width=15, height=1, command=fiveWindow).place(x=165, y=280)
 
