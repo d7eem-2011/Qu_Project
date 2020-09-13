@@ -3,8 +3,20 @@ from tkinter import filedialog
 from tkinter import messagebox as mb
 from tkcalendar import DateEntry
 from module3 import task_do
+import pyarabic.number
+from num2words import num2words
 
-
+# # Most common usage.
+# print(num2words(36))
+#
+# # Other variants, according to the type of article.
+# print(num2words(36, to = 'ordinal'))
+# print(num2words(36, to = 'ordinal_num'))
+# print(num2words(36, to = 'year'))
+# print(num2words(36, to = 'currency'))
+#
+# # Language Support.
+# print(num2words(36, lang ='es'))
 
 
 
@@ -84,18 +96,17 @@ def oneWindow():
 	l2 = Label(boneWindow, text="ادخل تاريخ الجلسة", width=15, height=1, background="lightblue", compound=TOP)
 	l2.place(x=365, y=220)
 
-	options = [ "1", "2", "3","4", "5", "6","7", "8", "9", "10",
-				"11", "12", "13","14", "15", "16","17", "18", "19", "20",
-				"21", "22", "23","24", "25", "26","27", "28", "29", "30"]
+	options = [*range(1,31)]
 
 	clicked = StringVar()
 	clicked.set(options[0])
 	drop = OptionMenu(boneWindow, clicked, *options)
 	drop.place(x=295, y=175)
 
-	options = [ "الاولى", "الثانية", "الثالثة","الرابعة", "الخامسة", "السادسة","السابعة", "الثامنة", "التاسعة", "العاشرة",
-				"الحادية عشر", "الثانية عشر", "الثالثة عشر","الرابعة عشر", "الخامسة عشر", "السادسة عشر","السابعة عشر", "الثامنة عشر", "التاسعة عشر", "العشرون",
-				"الحادية والعشرون", "الثانية والعشرون", "الثالثة والعشرون","الرابعة والعشرون", "الخامسة والعشرون", "السادسة والعشرون","السابعة والعشرون", "الثامنة والعشرون", "التاسعة والعشرون", "الثلاثون"]
+	options = []
+	for i in range(1,31):
+		num = num2words(i, lang='ar', to='ordinal_num')
+		options.append(num)
 
 	clicked = StringVar()
 	clicked.set(options[0])
@@ -106,17 +117,17 @@ def oneWindow():
 					background='black', foreground='white', borderwidth=2)
 	cal.place(x=240, y=220)
 
-	b1 = Button(boneWindow, text="اختيار ملف التشكيل", width=15, height=1, command=open_tashkel, relief=FLAT)
-	b1.place(x=240, y=260)
+	tashkelButton = Button(boneWindow, text='اختيار ملف التشكيل', width=15, height=1, command=open_tashkel, relief=FLAT)
+	tashkelButton.place(x=240, y=260)
 
-	b2 = Button(boneWindow, text="اختيار ملف الخطط", width=15, height=1, command=open_ketat)
-	b2.place(x=240, y=300)
+	katatButton = Button(boneWindow, text="اختيار ملف الخطط", width=15, height=1, command=open_ketat)
+	katatButton.place(x=240, y=300)
 
 	l3 = Label(boneWindow, text=":ملاحظة قبل الحفظ* \n حدد رقم الجلسة - \n حدد تاريخ الجلسة - \n اختيار ملف التشكيل - \n اختيار ملف الخطط -", width=20, height=6, background="#FFFFFF")
 	l3.place(x=410, y=300)
 
-	b3 = Button (boneWindow, text = "حفظ", width=15, height=1, command=task_run)
-	b3.place(x=240, y=340)
+	saveButton = Button (boneWindow, text ="حفظ", width=15, height=1, command=task_run)
+	saveButton.place(x=240, y=340)
 
 	b4 = Button(boneWindow, text="التحقق من الحفظ", width=15, height=1, command=open)
 	b4.place(x=240, y=380)
@@ -196,8 +207,7 @@ def threeWindow():
 
 	l1 = Label(bthreeWindow,text = ":التاريخ", width=15, height=1, background="lightblue", compound=TOP).place(x=410, y=140)
 
-	cal = DateEntry(bthreeWindow, width=12, year=2020, month=1, day=1,
-					background='black', foreground='white', borderwidth=2)
+	cal = DateEntry(bthreeWindow, width=12, year=2020, month=1, day=1,background='black', foreground='white', borderwidth=2)
 	cal.place(x=120, y=140)
 
 	l2 = Label(bthreeWindow,text = ":الاسم", width=15, height=1, background="lightblue", compound=TOP)
@@ -408,10 +418,10 @@ def sixWindow():
 
 	b6 = Button(bsixWindow, text="تحضير الاعضاء", width=15, height=1, command=attendWindow).place(x=240, y=380)
 
-	b7 = Button (bsixWindow, text = "اغلاق", width=10, height=1, command = close).place(x=255, y=420)
+	b7 = Button(bsixWindow, text = "اغلاق", width=10, height=1, command=close).place(x=255, y=420)
 
 button6 = Button(qux, text="اعداد الجلسة", width=15, height=1, command=sixWindow).place(x=305, y=280)
 
-buttonClose = Button (qux, text = "اغلاق", width=10, height=1, command = close).place(x=255, y=320)
+buttonClose = Button(qux, text = "اغلاق", width=10, height=1, command=close).place(x=255, y=320)
 
 qux.mainloop()
