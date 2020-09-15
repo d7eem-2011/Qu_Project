@@ -58,10 +58,6 @@ def oneWindow():
 		else:
 			mb.showinfo('العوده', 'البقاء في النافذة')
 
-	boneWindow.title("تسجيل جلسة جديدة")
-	boneWindow.geometry("600x480")
-	boneWindow.resizable(False, False)
-	boneWindow.config( background= "lightblue")
 
 	def open_tashkel():
 		global fileopen_tashkel
@@ -72,8 +68,8 @@ def oneWindow():
 
 	def open_ketat():
 		global fileopen_ketat
-		fileopen_ketat = filedialog.askopenfilename(initialdir="/", title="Select A File",
-													filetypes=(("xlsx", "*.xlsx"), ("all files", "*.*")))
+		fileopen_ketat = filedialog.askopenfilename(
+			initialdir="/", title="Select A File", filetypes=(("xlsx", "*.xlsx"), ("all files", "*.*")))
 		labelFile = Label(boneWindow, text=fileopen_ketat, background="white")
 		labelFile.pack(side=TOP)
 
@@ -85,6 +81,12 @@ def oneWindow():
 			task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash)
 		except Exception:
 			mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
+
+	boneWindow.title("تسجيل جلسة جديدة")
+	boneWindow.geometry("600x480")
+	boneWindow.resizable(False, False)
+	boneWindow.config( background= "lightblue")
+
 
 
 	labelImg = Label(boneWindow, width=377, height=140, image = photo, background= "lightblue", compound = TOP)
@@ -367,7 +369,8 @@ def sixWindow():
 		battendWindow.resizable(False, False)
 		battendWindow.config(background="lightblue")
 
-		labelImg = Label(battendWindow, width=377, height=140, image=photo, background="lightblue", compound=TOP).pack(
+		labelImg = Label(battendWindow, width=377, height=140, image=photo, background="lightblue", compound=TOP)
+		labelImg.pack(
 			side=TOP)
 
 		l1 = Label(battendWindow, text=":الاسم", width=15, height=1, background="lightblue", compound=TOP).place(x=410,
@@ -388,13 +391,15 @@ def sixWindow():
 		l3 = Label(battendWindow, text=":الكلية", width=15, height=1, background="lightblue", compound=TOP).place(x=410,
 																												y=260)
 
-		t2 = Text(battendWindow, width=40, height=1).place(x=120, y=260)
+		t2 = Text(battendWindow, width=40, height=1)
+		t2.place(x=120, y=260)
 
-		l4 = Label(battendWindow, text=":تاريخ التكليف", width=15, height=1, background="lightblue", compound=TOP).place(
+		l4 = Label(battendWindow, text=":تاريخ التكليف", width=15, height=1, background="lightblue", compound=TOP)
+		l4.place(
 			x=390, y=300)
 
-		cal1 = DateEntry(battendWindow, width=12, year=2020, month=1, day=1,
-						 background='black', foreground='white', borderwidth=2)
+		cal1 = DateEntry(battendWindow, width=12, year=2020, month=1, day=1, background='black', foreground='white',
+						borderwidth=2)
 		cal1.place(x=120, y=300)
 
 		l5 = Label(battendWindow, text=":تاريخ انتهاء التكليف", width=15, height=1, background="lightblue",
