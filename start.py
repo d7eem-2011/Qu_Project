@@ -78,7 +78,9 @@ def oneWindow():
 		docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
 		doctash = r"C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\تشكيل - مذكرات عرض للمجلس.docx"
 		try:
-			task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash)
+			name_clicked = clicked.get()
+			name_clicked = 'الجلسة ال'+name_clicked
+			task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked)
 		except Exception:
 			mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
 
@@ -98,12 +100,12 @@ def oneWindow():
 	l2 = Label(boneWindow, text="ادخل تاريخ الجلسة", width=15, height=1, background="lightblue", compound=TOP)
 	l2.place(x=365, y=220)
 
-	options = [*range(1,31)]
-
-	clicked = StringVar()
-	clicked.set(options[0])
-	drop = OptionMenu(boneWindow, clicked, *options)
-	drop.place(x=295, y=175)
+	# options = [*range(1,31)]
+	#
+	# clicked = StringVar()
+	# clicked.set(options[0])
+	# drop = OptionMenu(boneWindow, clicked, *options)
+	# drop.place(x=295, y=175)
 
 	options = []
 	for i in range(1,31):
@@ -115,9 +117,8 @@ def oneWindow():
 	drop = OptionMenu(boneWindow, clicked, *options)
 	drop.place(x=155, y=175)
 
-	cal = DateEntry(boneWindow, width=15, year=2020, month=1, day=1,
-					background='black', foreground='white', borderwidth=2)
-	cal.place(x=240, y=220)
+	# cal = DateEntry(boneWindow, width=15, year=2020, month=1, day=1,background='black', foreground='white', borderwidth=2)
+	# cal.place(x=240, y=220)
 
 	tashkelButton = Button(boneWindow, text='اختيار ملف التشكيل', width=15, height=1, command=open_tashkel, relief=FLAT)
 	tashkelButton.place(x=240, y=260)
@@ -234,7 +235,7 @@ def threeWindow():
 
 	b2 = Button (bthreeWindow, text = "اغلاق", width=10, height=1, command = close).place(x=255, y=340)
 
-b3 = Button (qux, text = "التقارير", width=15, height=1, command=threeWindow).place(x=305, y=230)
+b3 = Button(qux, text = "التقارير", width=15, height=1, command=threeWindow).place(x=305, y=230)
 
 def fourWindow():
 	bfourWindow = Toplevel(qux)

@@ -9,7 +9,7 @@ from ketat import ketat_def
 from tashkel import tashkel_def
 
 
-def task_do(xlxfil,xlxForTsh,docfil,doctash):
+def task_do(xlxfil,xlxForTsh,docfil,doctash,saction):
 
     context1 = {}
     context1.update(ketat_def(xlxfil))
@@ -21,17 +21,19 @@ def task_do(xlxfil,xlxForTsh,docfil,doctash):
     doc = DocxTemplate(docfil)
 
 
+
+    if not os.path.exists(saction):
+        os.makedirs(saction)
+
     
     doc.render(context1)
     today = str(date.today())
     OUTPUT = 'output اعداد محضر'
-    if not os.path.exists(OUTPUT):
-        os.makedirs(OUTPUT)
+    if not os.path.exists(saction+'/'+OUTPUT):
+        os.makedirs(saction+'/'+OUTPUT)
 
-    save_name = today + 'template output v3 .docx'
-    doc.save(OUTPUT + '/' + save_name)
-
-
+    save_name = '{} {} template output v3 .docx'.format(today, saction)
+    doc.save(saction+'/'+OUTPUT + '/' + save_name)
 
     context2 = {}
     context2.update(tashkel_def(xlxForTsh))
@@ -42,11 +44,11 @@ def task_do(xlxfil,xlxForTsh,docfil,doctash):
     tashkelFil.render(context2)
     today = str(date.today())
     OUTPUT2 = 'output اعداد التشكيل'
-    if not os.path.exists(OUTPUT2):
-        os.makedirs(OUTPUT2)
+    if not os.path.exists(saction+'/'+OUTPUT2):
+        os.makedirs(saction+'/'+OUTPUT2)
 
-    save_name2 = today + 'template output v3 .docx'
-    tashkelFil.save(OUTPUT2 + '/' + save_name2)
+    save_name2 = '{} {} template output v3 .docx'.format(today, saction)
+    tashkelFil.save(saction+'/'+OUTPUT2 + '/' + save_name2)
 
 
 
