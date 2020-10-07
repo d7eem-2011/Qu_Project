@@ -1,4 +1,4 @@
-#!c:\users\d7eem\pycharmprojects\qu_project\venv\scripts\python.exe
+#!C:\Users\D7eem\PycharmProjects\Qu_Project\venv\Scripts\python.exe
 
 ##############################################################################
 #

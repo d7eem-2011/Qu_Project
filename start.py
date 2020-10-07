@@ -77,12 +77,12 @@ def oneWindow():
 	def task_run():
 		docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
 		doctash = r"C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\تشكيل - مذكرات عرض للمجلس.docx"
-		try:
-			name_clicked = clicked.get()
-			name_clicked = 'الجلسة ال'+name_clicked
-			task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked)
-		except Exception:
-			mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
+		# try:
+		name_clicked = clicked.get()
+		name_clicked = 'الجلسة ال'+name_clicked
+		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked)
+		# except Exception:
+		# 	mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
 
 	boneWindow.title("تسجيل جلسة جديدة")
 	boneWindow.geometry("600x480")

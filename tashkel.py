@@ -105,7 +105,7 @@ def tashkel_def(X):
         'أنثى': 'طالبة'
     }
 
-    for i in range(0,10):
+    for i in range(total):
         context['تشكيل'].append({
         'رقم': pyarabic.number.number2ordinal(i + 1),
         'اسمالطالب': stdname[i],
