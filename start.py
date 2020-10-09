@@ -25,7 +25,7 @@ from num2words import num2words
 
 qux = Tk()
 
-photo = PhotoImage(file=r"C:\Users\D7eem\PycharmProjects\Qu_Project\image\qu1.png")
+photo = PhotoImage(file=r"image\qu1.png")
 labelImg = Label(qux, width=377, height=140, image = photo, background= "lightblue", compound = TOP).pack(side= TOP)
 
 qux.title("-الصفحة الرئيسية-")
@@ -75,14 +75,16 @@ def oneWindow():
 
 
 	def task_run():
-		docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
-		doctash = r"C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\تشكيل - مذكرات عرض للمجلس.docx"
+		docfil = r'World Docement\template v4.docx'
+		doctash = r"World Docement\تشكيل - مذكرات عرض للمجلس.docx"
 		# try:
 		name_clicked = clicked.get()
 		name_clicked = 'الجلسة ال'+name_clicked
-		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked)
+		datein = str(cal3.get(1.0, END))
+
+		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked,datein)
 		# except Exception:
-		# 	mb.showerror("Warning", "الرجاء اختيار ملف الصحيح !!")
+		# 	mb.showerror("Warning", Exception)
 
 	boneWindow.title("تسجيل جلسة جديدة")
 	boneWindow.geometry("600x480")
@@ -115,10 +117,14 @@ def oneWindow():
 	clicked = StringVar()
 	clicked.set(options[0])
 	drop = OptionMenu(boneWindow, clicked, *options)
-	drop.place(x=155, y=175)
+	drop.place(x=255, y=175)
 
 	# cal = DateEntry(boneWindow, width=15, year=2020, month=1, day=1,background='black', foreground='white', borderwidth=2)
 	# cal.place(x=240, y=220)
+
+	cal3 = Text(boneWindow, width=20, height=1)
+	cal3.place(x=200, y=220)
+
 
 	tashkelButton = Button(boneWindow, text='اختيار ملف التشكيل', width=15, height=1, command=open_tashkel, relief=FLAT)
 	tashkelButton.place(x=240, y=260)

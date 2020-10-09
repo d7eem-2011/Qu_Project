@@ -14,24 +14,20 @@ import pandas as pd
 # t=time.ctime(v)
 
 
-docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
+# docfil = r'C:\Users\D7eem\PycharmProjects\Qu_Project\World Docement\template v4.docx'
+#
+# xlxfil = r'C:\Users\D7eem\Desktop\OneDrive_3_10-5-2020\خطط الجلسة الثالثة.xlsx'
+#
+# doc = DocxTemplate(docfil)
 
-xlxfil = r'C:\Users\D7eem\Desktop\OneDrive_3_10-5-2020\خطط الجلسة الثالثة.xlsx'
 
-doc = DocxTemplate(docfil)
+def ketat_def(X):
+    ex = pd.read_excel(X, header=0)
 
-
-def ketat_def(xlxfil):
-
-    # load .docx and .xlsx filesf
-
-    ex = pd.read_excel(xlxfil, header=0)
-
-    # Replacing any empty cell with 'لايوجد'
-    # ex = ex.fillna(0)
+    ex = ex.fillna(0)
 
     stdname = pd.Series(ex['اسم الطالب'])
-    # ex['الرقم الجامعي']= ex['الرقم الجامعي'].astype(int)
+    ex['الرقم الجامعي'] = ex['الرقم الجامعي'].astype(int)
     stdnumber = pd.Series(ex['الرقم الجامعي'])
     gen = pd.Series(ex['الجنس'])
     cole = pd.Series(ex['الكلية'])

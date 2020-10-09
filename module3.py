@@ -9,9 +9,11 @@ from ketat import ketat_def
 from tashkel import tashkel_def
 
 
-def task_do(xlxfil,xlxForTsh,docfil,doctash,saction):
+def task_do(xlxfil,xlxForTsh,docfil,doctash,saction,datein):
 
     context1 = {}
+    context1.update(con=saction)
+    context1.update(date=datein)
     context1.update(ketat_def(xlxfil))
 
     context1.update(tashkel_def(xlxForTsh))
