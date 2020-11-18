@@ -1,9 +1,14 @@
+﻿#!/usr/bin/python
+# -*- coding=utf-8 -*-
+import unittest
+import sys
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox as mb
 from tkcalendar import DateEntry
-from module3 import task_do
-import pyarabic.number
+from module3 import *
+import pyarabic.number as number
+from pyarabic import number as nb
 from num2words import num2words
 
 # # Most common usage.
@@ -77,19 +82,24 @@ def oneWindow():
 	def task_run():
 		docfil = r'World Docement\template v4.docx'
 		doctash = r"World Docement\تشكيل - مذكرات عرض للمجلس.docx"
+		docad = r"World Docement\اعلان الجلسة.docx"
 		# try:
 		name_clicked = clicked.get()
-		name_clicked = 'الجلسة ال'+name_clicked
+		name_clicked = 'الجلسة '+name_clicked
 		datein = str(cal3.get(1.0, END))
 
-		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked,datein)
-		# except Exception:
-		# 	mb.showerror("Warning", Exception)
+		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked, datein)
+		task_do2(fileopen_ketat, fileopen_tashkel, docad, name_clicked, datein)
+		# except Exception as a:
+		# 	mb.showerror(f" Warning  {a} ", Exception)
 
 	boneWindow.title("تسجيل جلسة جديدة")
 	boneWindow.geometry("600x480")
 	boneWindow.resizable(False, False)
 	boneWindow.config( background= "lightblue")
+
+
+
 
 
 
@@ -111,7 +121,8 @@ def oneWindow():
 
 	options = []
 	for i in range(1,31):
-		num = num2words(i, lang='ar', to='ordinal_num')
+		# num = num2words(i, lang='ar', to='ordinal')
+		num = nb.number2ordinal(i)
 		options.append(num)
 
 	clicked = StringVar()

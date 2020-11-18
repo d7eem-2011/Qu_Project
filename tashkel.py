@@ -1,4 +1,4 @@
-#load libraries
+# load libraries
 from datetime import date
 from datetime import datetime
 import time
@@ -14,22 +14,17 @@ v = time.time()
 t = time.ctime(v)
 
 
-#load .docx and .xlsx filesf
+# load .docx and .xlsx filesf
 
 # docfil = 'C:/Users/D7eem/Documents/Team_Project/word document/تشكيل - مذكرات عرض للمجلس.docx'
 #
 # xlxForTsh = 'C:/Users/D7eem/Documents/Team_Project/Excel Document/تشكيل الجلسة الثانية عشر.xlsx'
 
 
-
-#Replacing any empty cell with 'لايوجد'
-
+# Replacing any empty cell with 'لايوجد'
 
 
 def tashkel_def(X):
-
-
-
     ex = pd.read_excel(X, header=0)
 
     ex = ex.fillna(0)
@@ -96,79 +91,84 @@ def tashkel_def(X):
     context = {'تشكيل': []}
 
     switch_std = {
-        'ذكر':'طالب',
-        'أنثى':'طالبة'
-    }
-
-    switch_doc = {
         'ذكر': 'طالب',
         'أنثى': 'طالبة'
     }
 
+    switch_doc = {
+        'ذكر': 'دكتور',
+        'أنثى': 'دكتورة'
+    }
+
+    switch_to = {
+        'ذكر': 'ذي',
+        'أنثى': 'ذات'
+    }
+
     for i in range(total):
         context['تشكيل'].append({
-        'رقم': pyarabic.number.number2ordinal(i + 1),
-        'اسمالطالب': stdname[i],
-        'رقمالطالب': stdnumber[i],
-        'الكلية': cole[i],
-        'القسم': department[i],
-        'التعليم': edu[i],
-        'البرنامج': program[i],
-        'رقمقسم': pyarabic.number.number2ordinal(numdepart[i]),
-        'تاريخالقسم': departdate[i],
-        'رقمجلسكلية': pyarabic.number.number2ordinal(numcole[i].astype(int)),
-        'تاريخالكلية': coledate[i],
-        'العنوان': title[i],
-        'اقتباس': quoat[i],
-        'الطالب': switch_std.get(gen[i]),
-        'دكتور': switch_doc.get(gen[i]),
+            'رقم': pyarabic.number.number2ordinal(i + 1),
+            'اسمالطالب': stdname[i],
+            'رقمالطالب': stdnumber[i],
+            'الكلية': cole[i],
+            'القسم': department[i],
+            'التعليم': edu[i],
+            'البرنامج': program[i],
+            'رقمقسم': pyarabic.number.number2ordinal(int(numdepart[i])),
+            'تاريخالقسم': departdate[i],
+            'رقمجلسكلية': pyarabic.number.number2ordinal(int(numcole[i])),
+            'تاريخالكلية': coledate[i],
+            'العنوان': title[i],
+            'اقتباس': quoat[i],
+            'الطالب': switch_std.get(gen[i]),
+            'دكتور': switch_doc.get(gen[i]),
 
-        'مناقش1': disc1[i],
-        'رتبة1': rank1[i],
-        'قسممناقش1': cole1[i],
-        'عملمناقش1': work1[i],
-        'صفة1': adje1[i],
+            'مناقش1': disc1[i],
+            'رتبة1': rank1[i],
+            'قسممناقش1': cole1[i],
+            'عملمناقش1': work1[i],
+            'صفة1': adje1[i],
 
-        'مناقش2': disc2[i],
-        'رتبة2': rank2[i],
-        'صفة2': adje2[i],
-        'قسممناقش2': cole2[i],
-        'عملمناقش2': work2[i],
+            'مناقش2': disc2[i],
+            'رتبة2': rank2[i],
+            'صفة2': adje2[i],
+            'قسممناقش2': cole2[i],
+            'عملمناقش2': work2[i],
 
-        'مناقش3': disc3[i],
-        'رتبة3': rank3[i],
-        'صفة3': adje3[i],
-        'قسممناقش3': cole3[i],
-        'عملمناقش3': work3[i],
+            'مناقش3': disc3[i],
+            'رتبة3': rank3[i],
+            'صفة3': adje3[i],
+            'قسممناقش3': cole3[i],
+            'عملمناقش3': work3[i],
 
-        'مناقش4': disc4[i],
-        'رتبة4': rank4[i],
-        'صفة4': adje4[i],
-        'قسممناقش4': cole4[i],
-        'عملمناقش4': work4[i],
+            'مناقش4': disc4[i],
+            'رتبة4': rank4[i],
+            'صفة4': adje4[i],
+            'قسممناقش4': cole4[i],
+            'عملمناقش4': work4[i],
 
-        'مناقش5': disc5[i],
-        'رتبة5': rank5[i],
-        'صفة5': adje5[i],
-        'قسممناقش5': cole5[i],
-        'عملمناقش5': work5[i],
+            'مناقش5': disc5[i],
+            'رتبة5': rank5[i],
+            'صفة5': adje5[i],
+            'قسممناقش5': cole5[i],
+            'عملمناقش5': work5[i],
 
-        'مناقش6': disc6[i],
-        'رتبة6': rank6[i],
-        'صفة6': adje6[i],
-        'قسممناقش6': cole6[i],
-        'عملمناقش6': work6[i],
+            'مناقش6': disc6[i],
+            'رتبة6': rank6[i],
+            'صفة6': adje6[i],
+            'قسممناقش6': cole6[i],
+            'عملمناقش6': work6[i],
 
-        'مناقش7': disc7[i],
-        'رتبة7': rank7[i],
-        'صفة7': adje7[i],
-        'قسممناقش7': cole7[i],
-        'عملمناقش7': work7[i]
+            'مناقش7': disc7[i],
+            'رتبة7': rank7[i],
+            'صفة7': adje7[i],
+            'قسممناقش7': cole7[i],
+            'عملمناقش7': work7[i],
+            'ذي': switch_to.get(gen[i])
+
         })
 
-
     return context
-
 
     # doc.render(context, autoescape=True)
     # today = str(date.today())
@@ -179,23 +179,20 @@ def tashkel_def(X):
     # save_name = today +' template output v3 .docx'
     # doc.save(OUTPUT+'/'+save_name)
 
-
-def run_tashkel(X, W):
-
-    context = {}
-
-    context.update(tashkel_def(X))
-
-    doc = DocxTemplate(W)
-
-    doc.render(context)
-    today = str(datetime.now().strftime("%Y-%m-%d, %H-%M"))
-    OUTPUT = 'output اعداد تشكيل'
-    if not os.path.exists(OUTPUT):
-        os.makedirs(OUTPUT)
-
-    save_name = today + ' template output v3 .docx'
-    DEST_FILE = OUTPUT + '/' + save_name
-    doc.save(DEST_FILE)
-
-
+# def run_tashkel(X, W):
+#
+#     context = {}
+#
+#     context.update(tashkel_def(X))
+#
+#     doc = DocxTemplate(W)
+#
+#     doc.render(context)
+#     today = str(datetime.now().strftime("%Y-%m-%d, %H-%M"))
+#     OUTPUT = 'output اعداد تشكيل'
+#     if not os.path.exists(OUTPUT):
+#         os.makedirs(OUTPUT)
+#
+#     save_name = today + ' template output v3 .docx'
+#     DEST_FILE = OUTPUT + '/' + save_name
+#     doc.save(DEST_FILE)

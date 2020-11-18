@@ -1,11 +1,10 @@
-#load libraries
+# load libraries
 import os
 from datetime import date
 import pyarabic.number
 from num2words import num2words
 from docxtpl import DocxTemplate
 import pandas as pd
-
 
 
 #
@@ -46,6 +45,7 @@ def ketat_def(X):
     supervisorname2 = pd.Series(ex['اسم مساعد المشرف'])
     supervisoredu2 = pd.Series(ex['الرتبة العلمية لمساعد المشرف'])
 
+    supervisorgen = pd.Series(ex['جنس المشرف'])
 
     #
     # quoat = pd.Series(ex['نسبة الإقتباس'])
@@ -79,13 +79,9 @@ def ketat_def(X):
     # work7 = pd.Series(ex['جهة عمل المناقش (7)'])
     # adje7 = pd.Series(ex['صفة المناقش (7)'])
 
-
-
-
     total = stdnumber.count()
 
-
-    context  = {'خطط': []}
+    context = {'خطط': []}
 
     switch_std = {
         'ذكر': 'طالب',
@@ -93,66 +89,73 @@ def ketat_def(X):
     }
 
     switch_doc = {
-        'ذكر': 'طالب',
-        'أنثى': 'طالبة'
+        'ذكر': 'دكتور',
+        'أنثى': 'دكتورة'
+    }
+
+    switch_to = {
+        'ذكر': 'ذي',
+        'أنثى': 'ذات'
     }
 
     for i in range(total):
         context['خطط'].append({
 
-        'رقم': pyarabic.number.number2ordinal(i+1),
-        'اسمالطالب': stdname[i],
-        'رقمالطالب': stdnumber[i],
-        'الكلية': cole[i],
-        'تاريخالقسم': departdate[i],
-        'تاريخالكلية': coledate[i],
-        'رقمجلسكلية': pyarabic.number.number2ordinal(numcole[i].astype(int)),
-        'البرنامج': program[i],
-        'العنوان': title[i],
-        'القسم': department[i],
-        'رقمقسم': pyarabic.number.number2ordinal(numdepart[i]),
-        'التعليم': edu[i],
-        'الطالب': switch_std.get(gen[i]),
-        'دكتور': switch_doc.get(gen[i]),
-        'اسمالمشرف': supervisorname[i],
-        'تعليمالمشرف': supervisoredu[i],
-        'اسمالمشرف2': supervisorname2[i],
-        'تعليمالمشرف2': supervisoredu2[i]
-
-        # 'اقتباس': quoat[i],
-        # 'مناقش1': disc1[i],
-        # 'رتبة1': rank1[i],
-        # 'قسممناقش1': cole1[i],
-        # 'عملمناقش1': work1[i],
-        # 'صفة1': adje1[i],
-        #
-        # 'مناقش2': disc2[i],
-        # 'رتبة2': rank2[i],
-        # 'صفة2': adje2[i],
-        # 'قسممناقش2': cole2[i],
-        # 'عملمناقش2': work2[i],
-        #
-        # 'مناقش3': disc3[i],
-        # 'رتبة3': rank3[i],
-        # 'صفة3': adje3[i],
-        # 'قسممناقش3': cole3[i],
-        # 'عملمناقش3': work3[i],
-        #
-        # 'مناقش6': disc6[i],
-        # 'رتبة6': rank6[i],
-        # 'صفة6': adje6[i],
-        # 'قسممناقش6': cole6[i],
-        # 'عملمناقش6': work6[i],
-        #
-        # 'مناقش7': disc7[i],
-        # 'رتبة7': rank7[i],
-        # 'صفة7': adje7[i],
-        # 'قسممناقش7': cole7[i],
-        # 'عملمناقش7': work7[i],
+            'رقم': pyarabic.number.number2ordinal(i + 1),
+            'اسمالطالب': stdname[i],
+            'رقمالطالب': stdnumber[i],
+            'الكلية': cole[i],
+            'تاريخالقسم': departdate[i],
+            'تاريخالكلية': coledate[i],
+            'رقمجلسكلية': pyarabic.number.number2ordinal(int(numcole[i])),
+            'البرنامج': program[i],
+            'العنوان': title[i],
+            'القسم': department[i],
+            'رقمقسم': pyarabic.number.number2ordinal(int(numdepart[i])),
+            'التعليم': edu[i],
+            'الطالب': switch_std.get(gen[i]),
+            'دكتور': switch_doc.get(supervisorgen[i]),
+            'اسمالمشرف': supervisorname[i],
+            'تعليمالمشرف': supervisoredu[i],
+            'اسمالمشرف2': supervisorname2[i],
+            'تعليمالمشرف2': supervisoredu2[i],
+            'ذي': switch_to.get(gen[i]),
+            ''
 
 
 
-    })
+            # 'اقتباس': quoat[i],
+            # 'مناقش1': disc1[i],
+            # 'رتبة1': rank1[i],
+            # 'قسممناقش1': cole1[i],
+            # 'عملمناقش1': work1[i],
+            # 'صفة1': adje1[i],
+            #
+            # 'مناقش2': disc2[i],
+            # 'رتبة2': rank2[i],
+            # 'صفة2': adje2[i],
+            # 'قسممناقش2': cole2[i],
+            # 'عملمناقش2': work2[i],
+            #
+            # 'مناقش3': disc3[i],
+            # 'رتبة3': rank3[i],
+            # 'صفة3': adje3[i],
+            # 'قسممناقش3': cole3[i],
+            # 'عملمناقش3': work3[i],
+            #
+            # 'مناقش6': disc6[i],
+            # 'رتبة6': rank6[i],
+            # 'صفة6': adje6[i],
+            # 'قسممناقش6': cole6[i],
+            # 'عملمناقش6': work6[i],
+            #
+            # 'مناقش7': disc7[i],
+            # 'رتبة7': rank7[i],
+            # 'صفة7': adje7[i],
+            # 'قسممناقش7': cole7[i],
+            # 'عملمناقش7': work7[i],
+
+        })
     return context
     # print(context)
     #

@@ -53,12 +53,29 @@ def task_do(xlxfil,xlxForTsh,docfil,doctash,saction,datein):
     tashkelFil.save(saction+'/'+OUTPUT2 + '/' + save_name2)
 
 
+def task_do2(xlxfil, xlxForTsh, docfil, saction, datein):
+    context1 = {}
+    context1.update(con=saction)
+    context1.update(date=datein)
+    context1.update(ketat_def(xlxfil))
 
+    context1.update(tashkel_def(xlxForTsh))
 
+    # print('its work Here /n'+str(ketat_def(xlxfil))+' /n '+str(tashkel_def(xlxForTsh)))
 
+    doc = DocxTemplate(docfil)
 
+    if not os.path.exists(saction):
+        os.makedirs(saction)
 
+    doc.render(context1)
+    today = str(date.today())
+    OUTPUT = 'output اعداد اعلان الجلسة'
+    if not os.path.exists(saction + '/' + OUTPUT):
+        os.makedirs(saction + '/' + OUTPUT)
 
+    save_name = '{} {} template output v3 .docx'.format(today, saction)
+    doc.save(saction + '/' + OUTPUT + '/' + save_name)
 
 
 # docfil = 'C:/Users/D7eem/Documents/Team_Project/word document/template v4.docx'
