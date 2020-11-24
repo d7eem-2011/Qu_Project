@@ -86,6 +86,8 @@ def tashkel_def(X):
     work7 = pd.Series(ex['جهة عمل المناقش (7)'])
     adje7 = pd.Series(ex['صفة المناقش (7)'])
 
+    Transactionnumber = pd.Series(ex['رقم المعاملة'])
+
     total = stdnumber.count()
 
     context = {'تشكيل': []}
@@ -164,7 +166,9 @@ def tashkel_def(X):
             'صفة7': adje7[i],
             'قسممناقش7': cole7[i],
             'عملمناقش7': work7[i],
-            'ذي': switch_to.get(gen[i])
+            'ذي': switch_to.get(gen[i]),
+
+            'رقمالمعاملة': Transactionnumber[i]
 
         })
 

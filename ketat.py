@@ -47,37 +47,11 @@ def ketat_def(X):
 
     supervisorgen = pd.Series(ex['جنس المشرف'])
 
-    #
-    # quoat = pd.Series(ex['نسبة الإقتباس'])
-    # disc1 = pd.Series(ex['اسم المناقش (1)'])
-    # rank1 = pd.Series(ex['الرتبة العلمية للمناقش (1)'])
-    # cole1 = pd.Series(ex['القسم الذي يتبعه المناقش (1)'])
-    # work1 = pd.Series(ex['جهة عمل المناقش (1)'])
-    # adje1 = pd.Series(ex['صفة المناقش (1)'])
-    #
-    # disc2 = pd.Series(ex['اسم المناقش (2)'])
-    # rank2 = pd.Series(ex['الرتبة العلمية للمناقش (2)'])
-    # cole2 = pd.Series(ex['القسم الذي يتبعه المناقش (2)'])
-    # work2 = pd.Series(ex['جهة عمل المناقش (2)'])
-    # adje2 = pd.Series(ex['صفة المناقش (2)'])
-    #
-    # disc3 = pd.Series(ex['اسم المناقش (3)'])
-    # rank3 = pd.Series(ex['الرتبة العلمية للمناقش (3)'])
-    # cole3 = pd.Series(ex['القسم الذي يتبعه المناقش (3)'])
-    # work3 = pd.Series(ex['جهة عمل المناقش (3)'])
-    # adje3 = pd.Series(ex['صفة المناقش (3)'])
-    #
-    # disc6 = pd.Series(ex['اسم المناقش (6)'])
-    # rank6 = pd.Series(ex['الرتبة العلمية للمناقش (6)'])
-    # cole6 = pd.Series(ex['القسم الذي يتبعه المناقش (6)'])
-    # work6 = pd.Series(ex['جهة عمل المناقش (6)'])
-    # adje6 = pd.Series(ex['صفة المناقش (6)'])
-    #
-    # disc7 = pd.Series(ex['اسم المناقش (7)'])
-    # rank7 = pd.Series(ex['الرتبة العلمية للمناقش (7)'])
-    # cole7 = pd.Series(ex['القسم الذي يتبعه المناقش (7)'])
-    # work7 = pd.Series(ex['جهة عمل المناقش (7)'])
-    # adje7 = pd.Series(ex['صفة المناقش (7)'])
+    ordernumber = pd.Series(ex['رقم الطلب'].astype(int))
+
+
+
+
 
     total = stdnumber.count()
 
@@ -120,40 +94,11 @@ def ketat_def(X):
             'اسمالمشرف2': supervisorname2[i],
             'تعليمالمشرف2': supervisoredu2[i],
             'ذي': switch_to.get(gen[i]),
-            ''
+            'رقمالطلب': ordernumber[i]
 
 
 
-            # 'اقتباس': quoat[i],
-            # 'مناقش1': disc1[i],
-            # 'رتبة1': rank1[i],
-            # 'قسممناقش1': cole1[i],
-            # 'عملمناقش1': work1[i],
-            # 'صفة1': adje1[i],
-            #
-            # 'مناقش2': disc2[i],
-            # 'رتبة2': rank2[i],
-            # 'صفة2': adje2[i],
-            # 'قسممناقش2': cole2[i],
-            # 'عملمناقش2': work2[i],
-            #
-            # 'مناقش3': disc3[i],
-            # 'رتبة3': rank3[i],
-            # 'صفة3': adje3[i],
-            # 'قسممناقش3': cole3[i],
-            # 'عملمناقش3': work3[i],
-            #
-            # 'مناقش6': disc6[i],
-            # 'رتبة6': rank6[i],
-            # 'صفة6': adje6[i],
-            # 'قسممناقش6': cole6[i],
-            # 'عملمناقش6': work6[i],
-            #
-            # 'مناقش7': disc7[i],
-            # 'رتبة7': rank7[i],
-            # 'صفة7': adje7[i],
-            # 'قسممناقش7': cole7[i],
-            # 'عملمناقش7': work7[i],
+
 
         })
     return context

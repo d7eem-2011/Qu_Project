@@ -83,6 +83,9 @@ def oneWindow():
 		docfil = r'World Docement\template v4.docx'
 		doctash = r"World Docement\تشكيل - مذكرات عرض للمجلس.docx"
 		docad = r"World Docement\اعلان الجلسة.docx"
+		docnote = r"World Docement\اعلان الخطط.docx"
+		docsum = r"World Docement\ملخص الخطط والتشكيل لوحدة الامن الفكري.docx"
+
 		# try:
 		name_clicked = clicked.get()
 		name_clicked = 'الجلسة '+name_clicked
@@ -90,6 +93,8 @@ def oneWindow():
 
 		task_do(fileopen_ketat, fileopen_tashkel, docfil, doctash, name_clicked, datein)
 		task_do2(fileopen_ketat, fileopen_tashkel, docad, name_clicked, datein)
+		task_do3(fileopen_ketat, fileopen_tashkel, docnote, name_clicked, datein)
+		task_do4(fileopen_ketat, fileopen_tashkel, docsum, name_clicked, datein)
 		# except Exception as a:
 		# 	mb.showerror(f" Warning  {a} ", Exception)
 
