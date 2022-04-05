@@ -1,27 +1,16 @@
-# load libraries
-from datetime import date
-from datetime import datetime
+
 import time
-import os
-import pyarabic.number
-from num2words import num2words
-from docxtpl import DocxTemplate
+import pyarabic.number as nb
+
 import pandas as pd
-from tkinter import *
-from tkinter import filedialog
+
+
+
+
 
 v = time.time()
 t = time.ctime(v)
 
-
-# load .docx and .xlsx filesf
-
-# docfil = 'C:/Users/D7eem/Documents/Team_Project/word document/تشكيل - مذكرات عرض للمجلس.docx'
-#
-# xlxForTsh = 'C:/Users/D7eem/Documents/Team_Project/Excel Document/تشكيل الجلسة الثانية عشر.xlsx'
-
-
-# Replacing any empty cell with 'لايوجد'
 
 
 def tashkel_def(X):
@@ -85,6 +74,7 @@ def tashkel_def(X):
     cole7 = pd.Series(ex['القسم الذي يتبعه المناقش (7)'])
     work7 = pd.Series(ex['جهة عمل المناقش (7)'])
     adje7 = pd.Series(ex['صفة المناقش (7)'])
+    Duration_of_study = pd.Series(ex['مدة الدراسة'])
 
     Transactionnumber = pd.Series(ex['رقم المعاملة'])
 
@@ -106,19 +96,37 @@ def tashkel_def(X):
         'ذكر': 'ذي',
         'أنثى': 'ذات'
     }
+    def change(x):
+        if type(x) == str:
+            word ='القصيم'
+            if word in x:
+                return "مناقش داخلي"
+            else:
+                return "مناقش خارجي"
+        else:
+            return 'لايوجد'
+
+    def corctnum(x, y=True):
+        if x + 1 == 1:
+            return 'الاول'
+        else:
+            return nb.number2ordinal(x + 1, feminin=y)
 
     for i in range(total):
+        if stdname[i] == 0 or stdnumber[i] == 0:
+            continue
+
         context['تشكيل'].append({
-            'رقم': pyarabic.number.number2ordinal(i + 1),
+            'رقم': corctnum(i, y=False),
             'اسمالطالب': stdname[i],
             'رقمالطالب': stdnumber[i],
             'الكلية': cole[i],
             'القسم': department[i],
             'التعليم': edu[i],
             'البرنامج': program[i],
-            'رقمقسم': pyarabic.number.number2ordinal(int(numdepart[i])),
+            'رقمقسم': corctnum(int(numdepart[i])),
             'تاريخالقسم': departdate[i],
-            'رقمجلسكلية': pyarabic.number.number2ordinal(int(numcole[i])),
+            'رقمجلسكلية': corctnum(int(numcole[i])),
             'تاريخالكلية': coledate[i],
             'العنوان': title[i],
             'اقتباس': quoat[i],
@@ -133,70 +141,42 @@ def tashkel_def(X):
 
             'مناقش2': disc2[i],
             'رتبة2': rank2[i],
-            'صفة2': adje2[i],
+            'صفة2': change(work2[i]),
             'قسممناقش2': cole2[i],
             'عملمناقش2': work2[i],
 
             'مناقش3': disc3[i],
             'رتبة3': rank3[i],
-            'صفة3': adje3[i],
+            'صفة3': change(work3[i]),
             'قسممناقش3': cole3[i],
             'عملمناقش3': work3[i],
 
             'مناقش4': disc4[i],
             'رتبة4': rank4[i],
-            'صفة4': adje4[i],
+            'صفة4': change(work4[i]),
             'قسممناقش4': cole4[i],
             'عملمناقش4': work4[i],
 
             'مناقش5': disc5[i],
             'رتبة5': rank5[i],
-            'صفة5': adje5[i],
+            'صفة5': change(work5[i]),
             'قسممناقش5': cole5[i],
             'عملمناقش5': work5[i],
 
             'مناقش6': disc6[i],
             'رتبة6': rank6[i],
-            'صفة6': adje6[i],
+            'صفة6': change(work6[i]),
             'قسممناقش6': cole6[i],
             'عملمناقش6': work6[i],
 
             'مناقش7': disc7[i],
             'رتبة7': rank7[i],
-            'صفة7': adje7[i],
+            'صفة7': change(work7[i]),
             'قسممناقش7': cole7[i],
             'عملمناقش7': work7[i],
             'ذي': switch_to.get(gen[i]),
-
+            'مدالدراسة': Duration_of_study[i],
             'رقمالمعاملة': Transactionnumber[i]
 
         })
-
     return context
-
-    # doc.render(context, autoescape=True)
-    # today = str(date.today())
-    # OUTPUT = 'output'
-    # if not os.path.exists(OUTPUT):
-    #     os.makedirs(OUTPUT)
-    #
-    # save_name = today +' template output v3 .docx'
-    # doc.save(OUTPUT+'/'+save_name)
-
-# def run_tashkel(X, W):
-#
-#     context = {}
-#
-#     context.update(tashkel_def(X))
-#
-#     doc = DocxTemplate(W)
-#
-#     doc.render(context)
-#     today = str(datetime.now().strftime("%Y-%m-%d, %H-%M"))
-#     OUTPUT = 'output اعداد تشكيل'
-#     if not os.path.exists(OUTPUT):
-#         os.makedirs(OUTPUT)
-#
-#     save_name = today + ' template output v3 .docx'
-#     DEST_FILE = OUTPUT + '/' + save_name
-#     doc.save(DEST_FILE)
